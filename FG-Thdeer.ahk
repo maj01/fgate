@@ -21,25 +21,27 @@ SetTitleMatchMode, Slow
 
 if WinActive("التحضير") or WinActive("ahk_class" . ClassName)
 {
-		ClipSaved := ClipboardAll
 		try	XL := ComObjActive("Excel.Application")
 		catch{
 			MsgBox , 0, ناسخ التحضير, لم يتم العثور على إكسل. يجب أن يكون إكسل مفتوح على الورقة المطلوب النسخ منها.
 			Gui, Restore
 			return
 		}
+		ClipSaved := ClipboardAll
 
 		For cell in XL.Range["B4:B29"]{
 				clipboard := ""
-				clipboard := % cell.text
-				;ClipWait
+				clipboard := cell.text
+				if (cell.text<>"")
+					ClipWait
+					
 				if ((A_Index <= 2) or (A_Index >= 10 and A_Index <= 20)){
 					if (A_Index >= 10 and A_Index <=17){
 						Send {Tab}
 						Sleep 200
 					}
 					Send ^a
-					Sleep 400
+					Sleep 200
 					Send ^v
 				}
 				else if ((A_Index >= 3 and A_Index <= 9) or (A_Index >= 21 and A_Index<= 25)){
