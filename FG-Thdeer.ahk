@@ -6,7 +6,7 @@
 
 Gui, Color, 4493a5
 Gui, Font, s13, Segoe UI
-Gui, Add, Text,w300 y15 Center cWhite, لبدء النسخ يجب أولا فتح الإكسل على ورقة التحضير ثم تصغيره ثم جعل صفحة بوابة المستقبل الخاصة بالتحضير مفتوحة في المقدمة وجعل التركيز على الحقل المسمى تمهيد ثم اضغط بدء النسخ
+Gui, Add, Text,w300 y15 Center cWhite, لبدء النسخ يجب أولا فتح الإكسل على ورقة التحضير ثم تصغيره ثم جعل صفحة بوابة المستقبل الخاصة بالتحضير مفتوحة في المقدمة وجعل مؤشر الكتابة على الحقل المسمى الوحدة ثم اضغط بدء النسخ
 Gui, Add, Text,w300 Center cWhite, يلزم عدم تحريك الفأرة أو لوحة المفاتيح أثناء النسخ
 Gui, Add, Button, default w300 gStart, ابدأ النسخ
 Gui, Show,w320, تحضير بوابة المستقبل
@@ -32,7 +32,7 @@ if WinActive("التحضير") or WinActive("ahk_class" . ClassName)
 		For cell in XL.Range["B4:B29"]{
 				clipboard := ""
 				clipboard := % cell.text
-				ClipWait
+				;ClipWait
 				if ((A_Index <= 2) or (A_Index >= 10 and A_Index <= 20)){
 					if (A_Index >= 10 and A_Index <=17){
 						Send {Tab}
@@ -42,7 +42,7 @@ if WinActive("التحضير") or WinActive("ahk_class" . ClassName)
 					Sleep 400
 					Send ^v
 				}
-				else if ((A_Index >= 3) and (A_Index <= 9) or (A_Index >= 21 and A_Index<= 25)){
+				else if ((A_Index >= 3 and A_Index <= 9) or (A_Index >= 21 and A_Index<= 25)){
 					if (cell.text="T"){
 							Send {Space}
 							Sleep 300
